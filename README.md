@@ -25,14 +25,14 @@ ________________________________
     sudo ln -sf python3 /usr/bin/python
     pip3 install python-telegram-bot --upgrade
 
-    ``ссылка для тех кто собирается использовать на сервере для видеонаблюдения http://ash-yes.livejournal.com/52421.html``
+    ссылка для тех кто собирается использовать на сервере для видеонаблюдения http://ash-yes.livejournal.com/52421.html
 
 ________________________________
 ### добавляем в автозагрузку
 
-    # пихаем ``telegram-bot.service`` в /etc/systemd/system/
-    # задаем права ``chmod + X /etc/systemd/system/telegram-bot.service``
-    # запускаем ``systemctl start telegram-bot.service``
-    # добавляем в автозагрузку ``systemctl enable telegram-bot.service``
-    # проверяем статус приложения ``systemctl status telegram-bot.service``
+    # пихаем telegram-bot.service в /etc/systemd/system/
+    # задаем права chmod + X /etc/systemd/system/telegram-bot.service
+    # запускаем systemctl start telegram-bot.service
+    # добавляем в автозагрузку systemctl enable telegram-bot.service
+    # проверяем статус приложения systemctl status telegram-bot.service
 ________________________________
