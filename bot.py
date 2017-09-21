@@ -70,11 +70,35 @@ def camon(bot, update):
     user = str(update.message.from_user.id)
     if user in config.admin: #если пользовательский id в списке admin то команда выполняется
         run_command("/home/ignat/bot_serv/scriptcamon.sh")
-        photo = '/media/root/server/motion/{:%d-%b-%Y-%R}.jpg'.format(datetime.now())
-        bot.sendMessage(chat_id=update.message.chat_id, text=textoutput)
-        bot.sendPhoto(chat_id, open(photo, 'rb'))
-     
+       # photo = '/media/root/server/motion/{:%d-%b-%Y-%R}.jpg'.format(datetime.now())
+       # bot.sendPhoto(chat_id, open(photo, 'rb'))
+#______________________________
+# хмм.. и почему же оно не работает мать твою...
+  # photo = '/media/root/server/motion/{:%d-%b-%Y-%R}.jpg'.format(datetime.now())
+       # bot.sendPhoto(chat_id, open(photo, 'rb'))
+#______________________________
         
+        bot.sendMessage(chat_id=update.message.chat_id, text=textoutput)
+   
+     # как раз таки этот блок нуждается в обработке.. возможно напишу отдельный демон для отслеживания появления новых файлов
+# примерно так:
+#--------------------------------------------------------------------
+# import telegram
+
+# bot = telegram.Bot('TOKEN')
+
+# def main():
+    # Тут должно быть отслеживание нового файла и вызов коллбэка
+
+
+# def on_new_file_created(new_file_name):
+ #   photo = '/media/root/server/motion/{}.jpg'.format(new_file_name)
+  #  bot.sendPhoto(chat_id, open(photo, 'rb'))
+
+
+# if __name__ == '__main__':
+  #  main()
+#--------------------------------------------------------------------        
 
 #функция команады camoff
 def camoff(bot, update):
