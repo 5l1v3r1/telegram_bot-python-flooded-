@@ -24,10 +24,10 @@ ________________________________
     make install
     sudo ln -sf python3 /usr/bin/python
     pip3 install python-telegram-bot --upgrade
-#------
+
     ссылка для тех кто собирается использовать на сервере для видеонаблюдения
     http://ash-yes.livejournal.com/52421.html
-#------
+
 ________________________________
 ### добавляем в автозагрузку
 
