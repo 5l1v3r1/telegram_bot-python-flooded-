@@ -152,8 +152,9 @@ def weather(bot, update):
     reload(config) 
     user = str(update.message.from_user.id)
     if user in config.admin: #если пользовательский id в списке admin то команда выполняется
-        run_command("wget -O - wttr.in/Barnaul -q")
+        run_command("curl wttr.in/Барнаул?0T&lang=ru")
         bot.sendMessage(chat_id=update.message.chat_id, text=textoutput)
+        # http://wttr.in/:help
 
 #функция команады free
 def free(bot, update):
