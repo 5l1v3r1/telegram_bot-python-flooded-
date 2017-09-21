@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=simple
 User=info # имя от кого запускать
-ExecStart=/home/info/bot.sh #прописываем полный путь до bot.py
+ExecStart=/home/info/bot.sh # в bot.sh прописываем полный путь до bot.py
 
 [Install]
 WantedBy=multi-user.target
