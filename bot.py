@@ -31,7 +31,7 @@ def run_command(command):
         textoutput = textoutput + '\n' + output.strip()
     rc = process.poll()
     return rc
-
+# кака..
 #def sendPhoto(photo, id):
  # for photo in photo:
     #bot.sendPhoto(id, photo)
@@ -70,8 +70,7 @@ def camon(bot, update):
     user = str(update.message.from_user.id)
     if user in config.admin: #если пользовательский id в списке admin то команда выполняется
         run_command("/home/ignat/bot_serv/scriptcamon.sh")
-       # photo = '/media/root/server/motion/{:%d-%b-%Y-%R}.jpg'.format(datetime.now())
-       # bot.sendPhoto(chat_id, open(photo, 'rb'))
+      
 #______________________________
 # хмм.. и почему же оно не работает мать твою...
   # photo = '/media/root/server/motion/{:%d-%b-%Y-%R}.jpg'.format(datetime.now())
