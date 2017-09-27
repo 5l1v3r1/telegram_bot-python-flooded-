@@ -14,9 +14,7 @@ ________________________________
     # допилить функцию отправки медиа в чат 
     # скомпилировать с Makefile, бибилотеками, блэкджеком и ш..енщинами
 ________________________________
-### для успешного запуска потребуется:
-    sudo apt-get install build-essential
-    pip install python-telegram-bot --upgrade
+### для запуска на платформах armhf и amd64 потребуется:
     wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
     tar -xpJf Python-3.6.0.tar.xz
     cd Python-3.6.0
@@ -24,10 +22,26 @@ ________________________________
     make
     sudo make install
     ln -s /usr/local/bin/python3 /usr/bin/python3
+    sudo apt install python3-pip
     pip3 install python-telegram-bot --upgrade
+    pip install --upgrade pip
 
     ссылка для тех кто собирается использовать на сервере для видеонаблюдения http://ash-yes.livejournal.com/52421.html
-
+________________________________
+### чтобы не танцевать с бубном на i386
+    sudo apt-get install build-essential
+    sudo apt-get install libssl-dev
+    sudo apt-get install make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev
+    wget https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tar.xz (если 3.6.0 не устанавливается в i386)
+    tar -xpJf Python-3.5.0.tar.xz
+    cd Python-3.5.0
+    ./configure
+    make
+    sudo make install
+    ln -s /usr/local/bin/python3 /usr/bin/python3
+    sudo apt install python3-pip
+    pip3 install python-telegram-bot --upgrade
+    pip install --upgrade pip
 ________________________________
 ### добавляем в автозагрузку
 
