@@ -15,13 +15,14 @@ ________________________________
     # скомпилировать с Makefile, бибилотеками, блэкджеком и ш..енщинами
 ________________________________
 ### для успешного запуска потребуется:
-
+    sudo apt-get install build-essential
+    pip install python-telegram-bot --upgrade
     wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tar.xz
     tar -xpJf Python-3.6.0.tar.xz
     cd Python-3.6.0
     ./configure
     make
-    make install
+    sudo make install
     ln -s /usr/local/bin/python3 /usr/bin/python3
     pip3 install python-telegram-bot --upgrade
 
