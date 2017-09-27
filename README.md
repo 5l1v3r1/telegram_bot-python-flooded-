@@ -22,7 +22,6 @@ ________________________________
     make
     sudo make install
     ln -s /usr/local/bin/python3 /usr/bin/python3
-    sudo apt-get install python3-pip
     pip3 install python-telegram-bot --upgrade
     pip install --upgrade pip
 
