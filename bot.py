@@ -1,11 +1,14 @@
 ﻿#!/usr/bin/python
 import config #файл с настройками
 import telegram
+import telebot
 import os
 import subprocess
 import sys
 import shlex
 import datetime
+import logging
+from telebot import types
 from subprocess import Popen, PIPE
 from telegram.ext import CommandHandler
 from imp import reload #модуль для перезагрузки (обновления) других модулей
@@ -13,6 +16,9 @@ from imp import reload #модуль для перезагрузки (обнов
 from datetime import datetime
 from telegram.ext import Updater
 updater = Updater(token=config.token)
+bot = telebot.TeleBot(token=config.token)
+logger = telebot.logger
+telebot.logger.setLevel(logging.DEBUG)
 dispatcher = updater.dispatcher
 
 #выполнение команды shell и вывод результата в телеграмм
@@ -35,6 +41,25 @@ def run_command(command):
 #def sendPhoto(photo, id):
  # for photo in photo:
     #bot.sendPhoto(id, photo)
+    
+    
+    # короч это говно потом запихую в отдельный демон, да, и оно вроде бы работает. но как-то криво
+    @bot.message_handler(content_types=['photo'])
+def handle_docs_photo(message):
+    
+    try:
+      
+       
+        file_info = bot.get_file(message.photo[len(message.photo)-1].file_id)
+        downloaded_file = bot.download_file(file_info.file_path)
+      
+        src='/home/ignatiy/bot/ps/'+file_info.file_path;
+        with open(src, 'wb') as new_file:
+           new_file.write(downloaded_file)
+        bot.reply_to(message,"Фото добавлено") 
+   
+    except Exception as e:
+        bot.reply_to(message,e )
     
 #функция команады старт
 def start(bot, update):
@@ -69,7 +94,7 @@ def camon(bot, update):
     reload(config) 
     user = str(update.message.from_user.id)
     if user in config.admin: #если пользовательский id в списке admin то команда выполняется
-        run_command("/home/ignat/bot_serv/scriptcamon.sh")
+        run_command("/home/ignat/bot_serv/scriptcamon.sh") # на Ubuntu 14.04 LTS это не используется в тестах
       
 #______________________________
 # хмм.. и почему же оно не работает мать твою...
@@ -104,7 +129,7 @@ def camoff(bot, update):
     reload(config) 
     user = str(update.message.from_user.id)
     if user in config.admin: #если пользовательский id в списке admin то команда выполняется
-        run_command("service motion stop")
+        run_command("service motion stop") # на Ubuntu 14.04 LTS это не используется в тестах
         bot.sendMessage(chat_id=update.message.chat_id, text=textoutput)
 
 #функция команады ifconfig
@@ -128,7 +153,7 @@ def faq(bot, update):
     reload(config) 
     user = str(update.message.from_user.id)
     if user in config.admin: #если пользовательский id в списке admin то команда выполняется
-        run_command("cat /home/ignat/bot_serv/faq.txt")
+        run_command("cat /home/ignatiy/bot/faq.txt")
         bot.sendMessage(chat_id=update.message.chat_id, text=textoutput)
 
 #функция команады reboot
@@ -228,3 +253,4 @@ dispatcher.add_handler(help_handler)
 
 
 updater.start_polling()
+bot.polling(none_stop=True, interval=0, timeout=3)
