@@ -15,7 +15,14 @@ from imp import reload #модуль для перезагрузки (обнов
 
 from datetime import datetime
 from telegram.ext import Updater
-updater = Updater(token=config.token)
+
+REQUEST_KWARGS={
+'proxy_url': 'http://175.184.232.62:6667/',
+#'username': 'PROXY_USER',
+#'password': 'PROXY_PASS',
+}
+
+updater = Updater(token=config.token, request_kwargs=REQUEST_KWARGS)
 bot = telebot.TeleBot(token=config.token)
 logger = telebot.logger
 telebot.logger.setLevel(logging.DEBUG)
